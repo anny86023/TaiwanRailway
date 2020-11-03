@@ -1,24 +1,306 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2DK-vg-C0G">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--台鐵火車即時查詢-->
+        <scene sceneID="9NL-Pv-K9z">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableViewController id="H6d-he-qGF" customClass="TRAStationTableViewController" customModule="TaiwanRailway" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qF7-9a-rIJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Z3c-L5-WHA">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z3c-L5-WHA" id="gFN-ji-Xkf">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="mEn-Oe-AMR" kind="show" identifier="StationDetail" id="mXo-Im-xUO"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="H6d-he-qGF" id="zxM-NG-1qA"/>
+                            <outlet property="delegate" destination="H6d-he-qGF" id="Rlt-dF-LF1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="台鐵火車即時查詢" id="im5-sG-NIY"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZ9-Qc-u7G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2682.4000000000001" y="93.842364532019715"/>
+        </scene>
+        <!--車站-->
+        <scene sceneID="TqL-wW-a1w">
+            <objects>
+                <viewController id="mEn-Oe-AMR" customClass="StationDetailViewController" customModule="TaiwanRailway" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZF0-GS-3md">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4s-IW-oUE">
+                                <rect key="frame" x="0.0" y="118" width="187.66666666666666" height="694"/>
+                                <connections>
+                                    <segue destination="6u8-rs-U3N" kind="embed" identifier="North" id="9V6-WZ-5ed"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCY-oF-QUd">
+                                <rect key="frame" x="187.66666666666663" y="118" width="187.33333333333337" height="694"/>
+                                <connections>
+                                    <segue destination="o6g-6q-chB" kind="embed" identifier="South" id="bAE-VW-nMJ"/>
+                                </connections>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="北上列車" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akj-Hr-SWi">
+                                <rect key="frame" x="0.0" y="88" width="188" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="南下列車" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luJ-6c-Rku">
+                                <rect key="frame" x="187" y="88" width="188" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="n4s-IW-oUE" firstAttribute="width" secondItem="ZF0-GS-3md" secondAttribute="width" multiplier="0.5" id="62L-vB-lYA"/>
+                            <constraint firstItem="aCY-oF-QUd" firstAttribute="top" secondItem="neq-eb-nDx" secondAttribute="top" constant="30" id="8hX-iT-uIC"/>
+                            <constraint firstItem="aCY-oF-QUd" firstAttribute="width" secondItem="ZF0-GS-3md" secondAttribute="width" multiplier="0.5" id="DNB-br-rMl"/>
+                            <constraint firstItem="n4s-IW-oUE" firstAttribute="leading" secondItem="ZF0-GS-3md" secondAttribute="leading" id="DXI-Io-X1s"/>
+                            <constraint firstAttribute="bottom" secondItem="aCY-oF-QUd" secondAttribute="bottom" id="SCr-we-vul"/>
+                            <constraint firstAttribute="bottom" secondItem="n4s-IW-oUE" secondAttribute="bottom" id="Tin-FS-Gt3"/>
+                            <constraint firstItem="aCY-oF-QUd" firstAttribute="trailing" secondItem="ZF0-GS-3md" secondAttribute="trailing" id="Uin-zT-dhF"/>
+                            <constraint firstItem="n4s-IW-oUE" firstAttribute="top" secondItem="neq-eb-nDx" secondAttribute="top" constant="30" id="YU7-Ta-rjC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="neq-eb-nDx"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="車站" id="CjS-oP-fZ7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="HMf-eD-tRK">
+                            <connections>
+                                <action selector="reloadData:" destination="mEn-Oe-AMR" id="fzh-rn-Uiz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cN1-MM-RDZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3541.5999999999999" y="93.842364532019715"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XEh-h0-Uxo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2DK-vg-C0G" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XXQ-fr-n45">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="H6d-he-qGF" kind="relationship" relationship="rootViewController" id="xur-t3-gNe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SM5-Gw-vn7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1740" y="93.842364532019715"/>
+        </scene>
+        <!--North Train View Controller-->
+        <scene sceneID="1WU-bE-FT2">
+            <objects>
+                <viewController id="6u8-rs-U3N" customClass="NorthTrainViewController" customModule="TaiwanRailway" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WGL-ob-s9r">
+                        <rect key="frame" x="0.0" y="0.0" width="188" height="694"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EDN-gF-WU1">
+                                <rect key="frame" x="0.0" y="0.0" width="187.66666666666666" height="694"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="e2o-oe-ktn" customClass="StationDetailTableViewCell" customModule="TaiwanRailway" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="187.66666666666666" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e2o-oe-ktn" id="OAr-sE-VPF">
+                                            <rect key="frame" x="0.0" y="0.0" width="187.66666666666666" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="往基隆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfS-jK-xUh">
+                                                    <rect key="frame" x="117.66666666666669" y="26" width="70" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="Dxv-7c-3SX"/>
+                                                        <constraint firstAttribute="width" constant="70" id="zIh-Eo-Kb3"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="準點" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDh-8G-zFm">
+                                                    <rect key="frame" x="112.66666666666669" y="50" width="70" height="20"/>
+                                                    <color key="backgroundColor" red="0.37417290372461248" green="0.73296716370558368" blue="0.39052929516096846" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="Shn-qn-P2O"/>
+                                                        <constraint firstAttribute="width" constant="70" id="tsc-K5-yz1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="區間車" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcU-Oi-cHF">
+                                                    <rect key="frame" x="117.66666666666669" y="5" width="70" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="qvJ-1i-85D"/>
+                                                        <constraint firstAttribute="height" constant="18" id="tQQ-yb-W3d"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="KDh-8G-zFm" secondAttribute="trailing" constant="5" id="9GM-Ux-YX2"/>
+                                                <constraint firstItem="qcU-Oi-cHF" firstAttribute="top" secondItem="OAr-sE-VPF" secondAttribute="top" constant="5" id="Btw-V9-eUm"/>
+                                                <constraint firstAttribute="bottom" secondItem="KDh-8G-zFm" secondAttribute="bottom" constant="10" id="DPP-iI-v5J"/>
+                                                <constraint firstItem="EfS-jK-xUh" firstAttribute="top" secondItem="qcU-Oi-cHF" secondAttribute="bottom" constant="3" id="GEt-It-0X7"/>
+                                                <constraint firstAttribute="trailing" secondItem="EfS-jK-xUh" secondAttribute="trailing" id="Lxe-4b-Upz"/>
+                                                <constraint firstAttribute="trailing" secondItem="qcU-Oi-cHF" secondAttribute="trailing" id="lAg-HF-fNj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="delay_N" destination="KDh-8G-zFm" id="M1d-Hu-xg9"/>
+                                            <outlet property="endStation_N" destination="EfS-jK-xUh" id="CVm-qC-JfS"/>
+                                            <outlet property="trainType_N" destination="qcU-Oi-cHF" id="p5f-4c-NLe"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="6u8-rs-U3N" id="hCK-1Z-snP"/>
+                                    <outlet property="delegate" destination="6u8-rs-U3N" id="igv-lC-CwD"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EDN-gF-WU1" secondAttribute="trailing" id="P4m-zI-YnZ"/>
+                            <constraint firstItem="EDN-gF-WU1" firstAttribute="leading" secondItem="WGL-ob-s9r" secondAttribute="leading" id="pCl-eo-r98"/>
+                            <constraint firstItem="EDN-gF-WU1" firstAttribute="bottom" secondItem="WGL-ob-s9r" secondAttribute="bottom" id="q6I-jP-5Nx"/>
+                            <constraint firstItem="EDN-gF-WU1" firstAttribute="top" secondItem="WGL-ob-s9r" secondAttribute="top" id="rDA-yC-Vlv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IqN-mf-R1w"/>
+                    </view>
+                    <connections>
+                        <outlet property="mytableView" destination="EDN-gF-WU1" id="wt0-TG-mtT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lgR-Fw-GDy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3321.5999999999999" y="810.59113300492618"/>
+        </scene>
+        <!--South Train View Controller-->
+        <scene sceneID="5RE-ts-5Hf">
+            <objects>
+                <viewController id="o6g-6q-chB" customClass="SouthTrainViewController" customModule="TaiwanRailway" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k0q-kU-4ZS">
+                        <rect key="frame" x="0.0" y="0.0" width="187.33333333333337" height="694"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yjN-xK-HLg">
+                                <rect key="frame" x="0.0" y="0.0" width="187.33333333333334" height="694"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="DN0-2A-oyQ" customClass="StationDetailTableViewCell" customModule="TaiwanRailway" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="187.33333333333334" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DN0-2A-oyQ" id="EUd-Hs-NF5">
+                                            <rect key="frame" x="0.0" y="0.0" width="187.33333333333334" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="區間車" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGV-e9-5DI">
+                                                    <rect key="frame" x="117.33333333333331" y="5" width="70" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="0FQ-V3-U2N"/>
+                                                        <constraint firstAttribute="height" constant="18" id="hUS-YZ-RM2"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="準點" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJz-VS-ROP">
+                                                    <rect key="frame" x="112.33333333333331" y="50" width="70" height="20"/>
+                                                    <color key="backgroundColor" red="0.3512203693" green="0.80052858589999998" blue="0.47445636990000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="RUS-h7-rES"/>
+                                                        <constraint firstAttribute="width" constant="70" id="fvA-05-0iD"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="往基隆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mi0-Om-4pZ">
+                                                    <rect key="frame" x="117.33333333333331" y="26" width="70" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="3gm-UF-fRC"/>
+                                                        <constraint firstAttribute="height" constant="18" id="JBQ-5f-gvO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Mi0-Om-4pZ" secondAttribute="trailing" id="2zj-Yl-J62"/>
+                                                <constraint firstAttribute="trailing" secondItem="NJz-VS-ROP" secondAttribute="trailing" constant="5" id="N5S-JG-IlV"/>
+                                                <constraint firstItem="NGV-e9-5DI" firstAttribute="top" secondItem="EUd-Hs-NF5" secondAttribute="top" constant="5" id="Rii-Pt-vbk"/>
+                                                <constraint firstAttribute="bottom" secondItem="NJz-VS-ROP" secondAttribute="bottom" constant="10" id="mS5-nw-6vZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="NGV-e9-5DI" secondAttribute="trailing" id="rwf-xH-s3A"/>
+                                                <constraint firstItem="Mi0-Om-4pZ" firstAttribute="top" secondItem="NGV-e9-5DI" secondAttribute="bottom" constant="3" id="ynn-e0-N3w"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="delay_S" destination="NJz-VS-ROP" id="K4u-7m-W7v"/>
+                                            <outlet property="endStation_S" destination="Mi0-Om-4pZ" id="oSj-3L-Swz"/>
+                                            <outlet property="trainType_S" destination="NGV-e9-5DI" id="Vv0-7X-ISN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="o6g-6q-chB" id="ctP-cn-qK5"/>
+                                    <outlet property="delegate" destination="o6g-6q-chB" id="6nP-CF-n7I"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="yjN-xK-HLg" firstAttribute="top" secondItem="k0q-kU-4ZS" secondAttribute="top" id="CzD-UO-Ot1"/>
+                            <constraint firstAttribute="trailing" secondItem="yjN-xK-HLg" secondAttribute="trailing" id="Jdz-jR-PYV"/>
+                            <constraint firstItem="yjN-xK-HLg" firstAttribute="bottom" secondItem="k0q-kU-4ZS" secondAttribute="bottom" id="VUN-bf-CZ8"/>
+                            <constraint firstItem="yjN-xK-HLg" firstAttribute="leading" secondItem="k0q-kU-4ZS" secondAttribute="leading" id="fy8-Wt-UVX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FPh-on-2Kc"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="yjN-xK-HLg" id="CNB-69-OFb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lHa-70-pl5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3776" y="811"/>
         </scene>
     </scenes>
 </document>
